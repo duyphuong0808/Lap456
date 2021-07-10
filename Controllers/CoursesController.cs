@@ -39,7 +39,7 @@ namespace Lap456.Controllers
             {
                 LecturerId = User.Identity.GetUserId(),
                 DateTime = viewModel.GetDateTime(),
-                CategroyId = viewModel.Category,
+                CategoryId = viewModel.Category,
                 Place = viewModel.Place,
 
             };

@@ -19,7 +19,7 @@ namespace Lap456.Models
         public DateTime DateTime { get; set; }
         public Category Category { get; set; }
         [Required]
-        public byte CategroyId { get; set; }
+        public byte CategoryId { get; set; }
     }
   
 }

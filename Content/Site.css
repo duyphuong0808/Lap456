@@ -39,22 +39,21 @@ textarea {
 .course {
     list-style: none;
 }
-
-    .course > li {
+.course > li {
         position: relative;
         margin: 30px 0;
-    }
+}
 
-        .course > li .date {
-            text-align: center;
-            background-color: #d41d50;
-            color: white;
-            width: 60px;
-            border-radius: 8px;
+.course > li .date {
+  text-align: center;
+  background-color: #d41d50;
+  color: white;
+  width: 60px;
+  border-radius: 8px;
         }
 
-        .course > li .details {
-            position: absolute;
-            top: 0;
-            left: 70px;
+.course > li .details {
+ position: absolute;
+ top: 0;
+ left: 70px;
         }

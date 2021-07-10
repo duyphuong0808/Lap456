@@ -15,7 +15,7 @@ namespace Lap456.Controllers
         public AttendancesController()
         {
             _dbContext = new ApplicationDbContext();
-
+            
         }
       
        

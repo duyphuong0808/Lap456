@@ -1,19 +1,9 @@
-﻿@model IEnumerable<Lap456.Models.Course>
+﻿@model Lap456.ViewModels.CoursesViewModel
 @{
     ViewBag.Title = "Home Page";
 }
-@*<div class="course">
-        <ul>
-            @foreach(var course in Model)
-                {
-                    <li>
-                        @course.DateTime -@course.Lecturer.Name
-                    </li>
-                }
-        </ul>
-    </div>*@
 <ul class="course">
-    @foreach (var course in Model)
+    @foreach (var course in Model.UpcommingCourses)
     {
 <li>
     <div class="date">
@@ -25,24 +15,30 @@
         </div>
     </div>
     <div class="details">
-        <span class="lecturer">
+        <span class="lecturer" style="display:flex">
             @course.Lecturer.Name
+            @if (Model.ShowAction)
+            {
+<button class="btn btn-default btn-sm js-toggle-follow" data-user-id="@course.LecturerId" style="font-size: 13px; color: blue; margin-left: 10px; border-color: white; margin-top: -7px;">Follow</button>}
         </span>
         <span class="category">
             @course.Category.Name
         </span>
-        <button data-course-id="@course.Id" class="btn btn-default btn-sm js-toggle-attendance">Going?</button>
+        @if (Model.ShowAction)
+        {
+<button data-course-id="@course.Id" class="btn btn-default btn-sm js-toggle-attendance">Going?</button>                }
     </div>
 </li>}
 </ul>
-@*@section scripts
+@section scripts
 {
     <script>
         $(document).ready(function () {
             $(".js-toggle-attendance").click(function (e) {
                 var button = $(e.target);
-                $post("/api/attendances", { courseId: button.attr("data-course-id") })
+                $.post("/api/attendances", { courseId: button.attr("data-course-id") })
                     .done(function () {
+                        alert("Register course successfully!");
                         button
                             .removeClass("btn-default")
                             .addClass("btn-info")
@@ -52,6 +48,17 @@
                         alert("Something failed!");
                     });
             });
+
+            $(".js-toggle-follow").click(function (e) {
+                var button = $(e.target);
+                $.post("/api/followings", { followeeId: button.attr("data-user-id") })
+                    .done(function () {
+                        button.text("Following");
+                    })
+                    .fail(function () {
+                        alert("Something failed");
+                    });
+            });
         });
     </script>
-}*@
+}
